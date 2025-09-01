@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const SubsidiesSection = () => {
+const SubsidiesSection = ({ isAdmin }) => {
   const [activeAccordion, setActiveAccordion] = useState(null);
 
   const toggleAccordion = (id) => {
@@ -133,8 +133,9 @@ const SubsidiesSection = () => {
                                 <input
                                   type="number"
                                   value={row[col]}
-                                  onChange={(e) => handleChange(idx, col, e.target.value, acc.setData, acc.data)}
-                                  className="w-full border-none focus:ring-0"
+                                  onChange={(e) => isAdmin && handleChange(idx, col, e.target.value, acc.setData, acc.data)}
+                                  disabled={!isAdmin}
+                                  className={`w-full border-none focus:ring-0 ${!isAdmin ? "bg-gray-100 cursor-not-allowed" : ""}`}
                                 />
                               </td>
                             ))}
@@ -163,8 +164,9 @@ const SubsidiesSection = () => {
                                 <input
                                   type={col === "name" ? "text" : "number"}
                                   value={row[col] || 0}
-                                  onChange={(e) => handleChange(idx, col, e.target.value, acc.setData, acc.data)}
-                                  className="w-full border-none focus:ring-0"
+                                  onChange={(e) => isAdmin && handleChange(idx, col, e.target.value, acc.setData, acc.data)}
+                                  disabled={!isAdmin}
+                                  className={`w-full border-none focus:ring-0 ${!isAdmin ? "bg-gray-100 cursor-not-allowed" : ""}`}
                                 />
                               </td>
                             ))}
@@ -190,8 +192,9 @@ const SubsidiesSection = () => {
                               <input
                                 type="number"
                                 value={row.value || 0}
-                                onChange={(e) => handleChange(idx, "value", e.target.value, acc.setData, acc.data)}
-                                className="w-full border-none focus:ring-0"
+                                onChange={(e) => isAdmin && handleChange(idx, "value", e.target.value, acc.setData, acc.data)}
+                                disabled={!isAdmin}
+                                className={`w-full border-none focus:ring-0 ${!isAdmin ? "bg-gray-100 cursor-not-allowed" : ""}`}
                               />
                             </td>
                           </tr>
